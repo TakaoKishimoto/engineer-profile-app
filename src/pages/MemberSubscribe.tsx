@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../../lib/supabaseClient";
-
+import { supabase } from "../lib/supabase";
 interface BusinessCategory {
   business_category_id: number;
   business_category_name: string;
@@ -20,7 +19,9 @@ interface ValidationErrors {
 }
 
 export function MemberSubscribe() {
-  const [businessCategories, setBusinessCategories] = useState<BusinessCategory[]>([]);
+  const [businessCategories, setBusinessCategories] = useState<
+    BusinessCategory[]
+  >([]);
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [formData, setFormData] = useState({
     lastName: "",
@@ -58,11 +59,15 @@ export function MemberSubscribe() {
     // 必須チェック
     if (!formData.lastName) newErrors.lastName = "姓を入力してください";
     if (!formData.firstName) newErrors.firstName = "名を入力してください";
-    if (!formData.lastNameKana) newErrors.lastNameKana = "セイを入力してください";
-    if (!formData.firstNameKana) newErrors.firstNameKana = "メイを入力してください";
-    if (!formData.phoneNumber) newErrors.phoneNumber = "電話番号を入力してください";
-    if (!formData.businessCategoryId) newErrors.businessCategoryId = "事業者区分を選択してください";
-    
+    if (!formData.lastNameKana)
+      newErrors.lastNameKana = "セイを入力してください";
+    if (!formData.firstNameKana)
+      newErrors.firstNameKana = "メイを入力してください";
+    if (!formData.phoneNumber)
+      newErrors.phoneNumber = "電話番号を入力してください";
+    if (!formData.businessCategoryId)
+      newErrors.businessCategoryId = "事業者区分を選択してください";
+
     // メールアドレスチェック
     if (!formData.email) {
       newErrors.email = "メールアドレスを入力してください";
@@ -88,7 +93,7 @@ export function MemberSubscribe() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // バリデーションチェック
     if (!validateForm()) {
       return;
@@ -105,9 +110,10 @@ export function MemberSubscribe() {
       if (fetchError) throw fetchError;
 
       // 新しい営業員IDを生成（最初のレコードの場合は"0000000001"から開始）
-      const nextId = latestId && latestId.length > 0
-        ? String(Number(latestId[0].sales_person_id) + 1).padStart(10, '0')
-        : "0000000001";
+      const nextId =
+        latestId && latestId.length > 0
+          ? String(Number(latestId[0].sales_person_id) + 1).padStart(10, "0")
+          : "0000000001";
 
       // フォームデータをスネークケースに変換
       const submissionData = {
@@ -140,13 +146,17 @@ export function MemberSubscribe() {
 
   return (
     <div className="min-h-screen w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 className="form-title text-center text-2xl font-bold mb-8">会員登録</h2>
-      
-      <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
+      <h2 className="form-title text-center text-2xl font-bold mb-8">
+        会員登録
+      </h2>
+
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
         <div className="user-info-section bg-gray-50 p-4 rounded-md mb-6">
           <h3 className="text-lg font-medium">ユーザー情報入力</h3>
         </div>
-        
+
         <div className="form-section space-y-6">
           <div className="form-group">
             <label className="form-label">
@@ -157,22 +167,38 @@ export function MemberSubscribe() {
               <div>
                 <input
                   type="text"
-                  className={`form-input w-full ${errors.lastName ? 'border-red-500' : ''}`}
+                  className={`form-input w-full ${
+                    errors.lastName ? "border-red-500" : ""
+                  }`}
                   placeholder="姓"
                   value={formData.lastName}
-                  onChange={(e) => handleInputChange("lastName", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("lastName", e.target.value)
+                  }
                 />
-                {errors.lastName && <div className="text-red-500 text-sm mt-1">{errors.lastName}</div>}
+                {errors.lastName && (
+                  <div className="text-red-500 text-sm mt-1">
+                    {errors.lastName}
+                  </div>
+                )}
               </div>
               <div>
                 <input
                   type="text"
-                  className={`form-input w-full ${errors.firstName ? 'border-red-500' : ''}`}
+                  className={`form-input w-full ${
+                    errors.firstName ? "border-red-500" : ""
+                  }`}
                   placeholder="名"
                   value={formData.firstName}
-                  onChange={(e) => handleInputChange("firstName", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("firstName", e.target.value)
+                  }
                 />
-                {errors.firstName && <div className="text-red-500 text-sm mt-1">{errors.firstName}</div>}
+                {errors.firstName && (
+                  <div className="text-red-500 text-sm mt-1">
+                    {errors.firstName}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -186,22 +212,38 @@ export function MemberSubscribe() {
               <div>
                 <input
                   type="text"
-                  className={`form-input w-full ${errors.lastNameKana ? 'border-red-500' : ''}`}
+                  className={`form-input w-full ${
+                    errors.lastNameKana ? "border-red-500" : ""
+                  }`}
                   placeholder="セイ"
                   value={formData.lastNameKana}
-                  onChange={(e) => handleInputChange("lastNameKana", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("lastNameKana", e.target.value)
+                  }
                 />
-                {errors.lastNameKana && <div className="text-red-500 text-sm mt-1">{errors.lastNameKana}</div>}
+                {errors.lastNameKana && (
+                  <div className="text-red-500 text-sm mt-1">
+                    {errors.lastNameKana}
+                  </div>
+                )}
               </div>
               <div>
                 <input
                   type="text"
-                  className={`form-input w-full ${errors.firstNameKana ? 'border-red-500' : ''}`}
+                  className={`form-input w-full ${
+                    errors.firstNameKana ? "border-red-500" : ""
+                  }`}
                   placeholder="メイ"
                   value={formData.firstNameKana}
-                  onChange={(e) => handleInputChange("firstNameKana", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("firstNameKana", e.target.value)
+                  }
                 />
-                {errors.firstNameKana && <div className="text-red-500 text-sm mt-1">{errors.firstNameKana}</div>}
+                {errors.firstNameKana && (
+                  <div className="text-red-500 text-sm mt-1">
+                    {errors.firstNameKana}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -214,13 +256,23 @@ export function MemberSubscribe() {
             <div>
               <input
                 type="tel"
-                className={`form-input w-full ${errors.phoneNumber ? 'border-red-500' : ''}`}
+                className={`form-input w-full ${
+                  errors.phoneNumber ? "border-red-500" : ""
+                }`}
                 placeholder="例）000-0000-0000"
                 value={formData.phoneNumber}
-                onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("phoneNumber", e.target.value)
+                }
               />
-              {errors.phoneNumber && <div className="text-red-500 text-sm mt-1">{errors.phoneNumber}</div>}
-              <div className="form-hint">※ハイフン(-)を付けて入力してください</div>
+              {errors.phoneNumber && (
+                <div className="text-red-500 text-sm mt-1">
+                  {errors.phoneNumber}
+                </div>
+              )}
+              <div className="form-hint">
+                ※ハイフン(-)を付けて入力してください
+              </div>
             </div>
           </div>
 
@@ -232,11 +284,15 @@ export function MemberSubscribe() {
             <div>
               <input
                 type="email"
-                className={`form-input w-full ${errors.email ? 'border-red-500' : ''}`}
+                className={`form-input w-full ${
+                  errors.email ? "border-red-500" : ""
+                }`}
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
               />
-              {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
+              {errors.email && (
+                <div className="text-red-500 text-sm mt-1">{errors.email}</div>
+              )}
             </div>
           </div>
 
@@ -247,21 +303,27 @@ export function MemberSubscribe() {
             </label>
             <div>
               <select
-                className={`form-select w-full ${errors.businessCategoryId ? 'border-red-500' : ''}`}
+                className={`form-select w-full ${
+                  errors.businessCategoryId ? "border-red-500" : ""
+                }`}
                 value={formData.businessCategoryId}
-                onChange={(e) => handleInputChange("businessCategoryId", e.target.value)}
-              >
+                onChange={(e) =>
+                  handleInputChange("businessCategoryId", e.target.value)
+                }>
                 <option value="">選択してください</option>
                 {businessCategories.map((category) => (
                   <option
                     key={category.business_category_id}
-                    value={category.business_category_id.toString()}
-                  >
+                    value={category.business_category_id.toString()}>
                     {category.business_category_name}
                   </option>
                 ))}
               </select>
-              {errors.businessCategoryId && <div className="text-red-500 text-sm mt-1">{errors.businessCategoryId}</div>}
+              {errors.businessCategoryId && (
+                <div className="text-red-500 text-sm mt-1">
+                  {errors.businessCategoryId}
+                </div>
+              )}
             </div>
           </div>
 
@@ -277,7 +339,12 @@ export function MemberSubscribe() {
                   name="messageReceiveEmail"
                   value="true"
                   checked={formData.messageReceiveEmailFlag === true}
-                  onChange={(e) => handleInputChange("messageReceiveEmailFlag", e.target.value === "true")}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "messageReceiveEmailFlag",
+                      e.target.value === "true"
+                    )
+                  }
                 />
                 受信する
               </label>
@@ -287,7 +354,12 @@ export function MemberSubscribe() {
                   name="messageReceiveEmail"
                   value="false"
                   checked={formData.messageReceiveEmailFlag === false}
-                  onChange={(e) => handleInputChange("messageReceiveEmailFlag", e.target.value === "true")}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "messageReceiveEmailFlag",
+                      e.target.value === "true"
+                    )
+                  }
                 />
                 受信しない
               </label>
@@ -306,7 +378,12 @@ export function MemberSubscribe() {
                   name="inquiryResponseEmail"
                   value="true"
                   checked={formData.inquiryResponseEmailFlag === true}
-                  onChange={(e) => handleInputChange("inquiryResponseEmailFlag", e.target.value === "true")}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "inquiryResponseEmailFlag",
+                      e.target.value === "true"
+                    )
+                  }
                 />
                 受信する
               </label>
@@ -316,7 +393,12 @@ export function MemberSubscribe() {
                   name="inquiryResponseEmail"
                   value="false"
                   checked={formData.inquiryResponseEmailFlag === false}
-                  onChange={(e) => handleInputChange("inquiryResponseEmailFlag", e.target.value === "true")}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "inquiryResponseEmailFlag",
+                      e.target.value === "true"
+                    )
+                  }
                 />
                 受信しない
               </label>
@@ -335,7 +417,12 @@ export function MemberSubscribe() {
                   name="progressNotification"
                   value="true"
                   checked={formData.progressNotificationFlag === true}
-                  onChange={(e) => handleInputChange("progressNotificationFlag", e.target.value === "true")}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "progressNotificationFlag",
+                      e.target.value === "true"
+                    )
+                  }
                 />
                 受信する
               </label>
@@ -345,7 +432,12 @@ export function MemberSubscribe() {
                   name="progressNotification"
                   value="false"
                   checked={formData.progressNotificationFlag === false}
-                  onChange={(e) => handleInputChange("progressNotificationFlag", e.target.value === "true")}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "progressNotificationFlag",
+                      e.target.value === "true"
+                    )
+                  }
                 />
                 受信しない
               </label>
@@ -355,8 +447,7 @@ export function MemberSubscribe() {
           <div className="flex justify-center mt-8">
             <button
               type="submit"
-              className="w-full sm:w-auto px-6 py-3 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600 transition-colors"
-            >
+              className="w-full sm:w-auto px-6 py-3 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600 transition-colors">
               登録する
             </button>
           </div>
@@ -364,4 +455,4 @@ export function MemberSubscribe() {
       </form>
     </div>
   );
-} 
+}
