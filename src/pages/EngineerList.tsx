@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { engineers } from "../data/engineers";
-import { Engineer } from "../types/engineer";
+import type { Engineer } from "../types/engineer";
 
 export function EngineerList() {
   return (

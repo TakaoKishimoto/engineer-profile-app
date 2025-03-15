@@ -1,5 +1,7 @@
 import { Engineer } from "../types/engineer";
 
+const now = new Date().toISOString();
+
 export const engineers: Engineer[] = [
   {
     id: "1",
@@ -16,6 +18,8 @@ export const engineers: Engineer[] = [
       linkedin: "https://linkedin.com",
       website: "https://example.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "2",
@@ -30,6 +34,8 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       twitter: "https://twitter.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "3",
@@ -51,6 +57,8 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "4",
@@ -65,6 +73,8 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       twitter: "https://twitter.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "5",
@@ -79,6 +89,8 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "6",
@@ -93,6 +105,8 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "7",
@@ -114,6 +128,8 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com",
     },
+    created_at: now,
+    updated_at: now,
   },
   {
     id: "8",
@@ -135,5 +151,7 @@ export const engineers: Engineer[] = [
       github: "https://github.com",
       linkedin: "https://linkedin.com",
     },
+    created_at: now,
+    updated_at: now,
   },
 ];
