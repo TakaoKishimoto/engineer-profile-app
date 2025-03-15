@@ -1,81 +1,3 @@
-# エンジニアプロフィールアプリケーション
-
-エンジニアのプロフィール情報を管理・表示するための Web アプリケーションです。
-
-## 機能
-
-- エンジニア一覧の表示
-- エンジニア詳細情報の表示
-- スキル、経験年数、SNS リンクなどの管理
-
-## 技術スタック
-
-- フロントエンド: React + TypeScript
-- バックエンド: Supabase
-- スタイリング: TailwindCSS
-- ルーティング: React Router
-
-## セットアップ手順
-
-1. リポジトリのクローン:
-
-```bash
-git clone [your-repository-url]
-cd sns-app
-```
-
-2. 依存パッケージのインストール:
-
-```bash
-npm install
-```
-
-3. 環境変数の設定:
-
-- `.env`ファイルを作成し、以下の変数を設定:
-
-```
-SUPABASE_URL=your_supabase_project_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-4. MCP の設定:
-
-- `.mcp/settings.json`を作成し、Supabase 接続情報を設定
-
-5. アプリケーションの起動:
-
-```bash
-npm run dev
-```
-
-## データベース構造
-
-エンジニア情報は以下のような構造で保存されています：
-
-```sql
-create table engineers (
-  id uuid default gen_random_uuid() primary key,
-  name text not null,
-  position text not null,
-  avatar text not null,
-  bio text not null,
-  skills text[] not null,
-  experience integer not null,
-  links jsonb,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-```
-
-## 開発環境
-
-- Node.js v19.3.0
-- npm 9.2.0
-
-## ライセンス
-
-MIT
-
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and
@@ -138,3 +60,40 @@ export default tseslint.config({
   },
 });
 ```
+
+# エンジニアプロフィールアプリケーション
+
+エンジニアのプロフィール情報を管理・表示するための Web アプリケーションです。
+
+## 必要要件
+
+- Node.js >= 20.0.0
+- npm >= 10.0.0
+
+## クイックスタート
+
+```bash
+# Node.jsのバージョン確認
+node --version  # v20.x.x以上であることを確認
+
+# npmのバージョン確認
+npm --version   # v10.x.x以上であることを確認
+
+# リポジトリのクローン
+git clone https://github.com/TakaoKishimoto/engineer-profile-app.git
+
+# プロジェクトディレクトリに移動
+cd engineer-profile-app
+
+# 依存パッケージのインストール
+npm install
+
+# 開発サーバーの起動
+npm run dev
+```
+
+## 機能
+
+- エンジニア一覧の表示
+- エンジニア詳細情報の表示
+- スキル、経験年数、SNS リンクなどの管理
